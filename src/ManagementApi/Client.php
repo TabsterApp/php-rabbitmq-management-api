@@ -52,7 +52,8 @@ class Client
 
         $this->client = new GuzzleClient([
             'base_uri' => $baseUrl,
-            'defaults' => ['auth' => [$this->username, $this->password]]
+            'defaults' => ['auth' => [$this->username, $this->password]],
+            'auth' => [$this->username, $this->password]
         ]);
     }
 
