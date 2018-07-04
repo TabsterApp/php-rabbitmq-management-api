@@ -47,9 +47,13 @@ class Client
         $username = self::USERNAME_DEFAULT,
         $password = self::PASSWORD_DEFAULT
     ) {
-        $this->client = new GuzzleClient(['base_uri' => $baseUrl]);
         $this->username = $username;
         $this->password = $password;
+
+        $this->client = new GuzzleClient([
+            'base_uri' => $baseUrl,
+            'defaults' => ['auth' => [$this->username, $this->password]]
+        ]);
     }
 
     /**
