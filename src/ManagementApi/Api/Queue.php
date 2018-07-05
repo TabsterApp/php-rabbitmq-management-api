@@ -67,9 +67,15 @@ class Queue extends AbstractApi
      * @param  string $name
      * @return array
      */
-    public function delete($vhost, $name)
+    public function delete($vhost, $name, $options = null)
     {
-        return $this->client->send(sprintf('/api/queues/%s/%s', urlencode($vhost), urlencode($name)), 'DELETE');
+        if($options){
+            $options = '?'.urlencode($options);
+        }else{
+            $options='';
+        }
+
+        return $this->client->send(sprintf('/api/queues/%s/%s%s', urlencode($vhost), urlencode($name), $options), 'DELETE');
     }
 
     /**
